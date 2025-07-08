@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Envíos - TUEMPRESA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo de TUEMPRESA">
+    </div>
+
+    <div class="calculator-container">
+        <h1>Calculadora de Envío</h1>
+        <h2 class="company-name">TUEMPRESA</h2>
+
+        <div class="form-group">
+            <label for="shipping-type">Tipo de envío:</label>
+            <select id="shipping-type">
+                <option value="" selected disabled>Seleccione tipo de envío</option>
+                <option value="aereo">Aéreo ✈️</option>
+                <option value="maritimo">Marítimo 🚢</option>
+            </select>
+        </div>
+
+        <div id="info-box" class="info-box" style="display: none;"></div>
+
+        <div class="form-group" id="category-group" style="display: none;">
+            <label for="category" id="category-label">Precio KG:</label>
+            <select id="category"></select>
+        </div>
+
+        <div id="form-fields" style="display: none;">
+            <div class="form-group">
+                <label for="length">Largo (cm):</label>
+                <input type="number" id="length" placeholder="Ingrese valor A">
+            </div>
+            <div class="form-group">
+                <label for="width">Ancho (cm):</label>
+                <input type="number" id="width" placeholder="Ingrese valor B">
+            </div>
+            <div class="form-group">
+                <label for="height">Alto (cm):</label>
+                <input type="number" id="height" placeholder="Ingrese valor C">
+            </div>
+            <div class="form-group" id="weight-group">
+                <label for="weight">Peso (kg):</label>
+                <input type="number" id="weight" placeholder="Ingrese peso en kg">
+            </div>
+        </div>
+
+        <div id="sensitive-warning" class="warning-box" style="display: none;">
+            <h3>⚠️ CARGA SENSIBLE ⚠️</h3>
+            <p>Incluye mercancías como:</p>
+            <ul>
+                <li>Agentes acuosos</li>
+                <li>Baterías de litio</li>
+                <li>Imitaciones de marcas (réplicas)</li>
+                <li>Polvos, Alimentos, Cosméticos</li>
+                <li>Mercancía de alto valor</li>
+                <li>Marcas chinas</li>
+            </ul>
+        </div>
+        
+        <button id="calculate-btn" style="display: none;">Calcular 🚀</button>
+        <button id="contact-btn" class="contact-btn" style="display: none;">Contacta a un asesor 💬</button>
+
+        <div id="results" style="display: none;">
+            <div class="form-group">
+                <label id="cbm-label">CBM M3 total:</label>
+                <input type="text" id="cbm-result" readonly>
+                <small class="formula">Fórmula: (A × B × C) ÷ 1,000,000 = CBM</small>
+            </div>
+            <div class="form-group">
+                <label>Precio del envío:</label>
+                <input type="text" id="price-result" readonly>
+                <small id="price-note" class="formula">COSTO DE ENVÍO APROXIMADO</small>
+            </div>
+             <div class="sub-calculations">
+                <p id="weight-calc-display"></p>
+                <p id="volume-calc-display"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

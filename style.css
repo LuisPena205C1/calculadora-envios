@@ -1,0 +1,172 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0a192f; /* Azul oscuro de fondo */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.logo-container {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.logo-container img {
+    max-width: 200px; /* Ajusta el tamaño del logo según necesites */
+    height: auto;
+}
+
+.calculator-container {
+    background-color: #172a45; /* Fondo del contenedor más claro */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+}
+
+h1 {
+    text-align: center;
+    color: #f9f871; /* Dorado para el título */
+    margin-top: 0;
+}
+
+.company-name {
+    color: #f4a261; /* Naranja para el nombre de la empresa */
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #ccd6f6; /* Texto blanco/gris claro */
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #495670; /* Borde de los inputs */
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0a192f; /* Fondo de los inputs */
+    color: #ccd6f6;
+}
+
+input::placeholder {
+    color: #8892b0;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #f9f871; /* Dorado al enfocar */
+}
+
+select {
+    cursor: pointer;
+}
+
+.info-box {
+    background-color: rgba(244, 162, 97, 0.1);
+    border: 1px solid rgba(244, 162, 97, 0.5);
+    color: #f4a261;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.info-box .min-shipping {
+    font-weight: bold;
+}
+
+.warning-box {
+    background-color: rgba(230, 57, 70, 0.1);
+    border: 1px solid rgba(230, 57, 70, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #ff8a93;
+}
+
+.warning-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: #e63946;
+}
+
+.warning-box ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.9rem;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #f4a261; /* Naranja */
+    color: #0a192f; /* Texto azul oscuro */
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #e76f51; /* Naranja más oscuro al pasar el mouse */
+}
+
+.contact-btn {
+     background-color: #e63946; /* Rojo para el botón de contacto */
+     color: white;
+}
+
+.contact-btn:hover {
+     background-color: #d62828; /* Rojo más oscuro al pasar el mouse */
+}
+
+#results {
+    margin-top: 25px;
+    border-top: 1px solid #495670; /* Borde superior de los resultados */
+    padding-top: 20px;
+}
+
+#results input {
+    background-color: #0a192f; /* Fondo del input de resultados */
+    font-weight: bold;
+    color: #f9f871; /* Texto dorado en resultados */
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.formula {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #a8b2d1; /* Texto gris azulado claro */
+    margin-top: 5px;
+}
+
+.sub-calculations {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #ccd6f6;
+    margin-top: 10px;
+}
