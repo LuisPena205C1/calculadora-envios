@@ -3,91 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Envíos - TUEMPRESA</title>
+    <title>Calculadora de Envíos desde China</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="logo-container">
-        <img src="logo.png" alt="Logo de TUEMPRESA">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-7">
+
+                <div class="logo-container text-center mb-4">
+                    <img src="logo.png" alt="logo" style="max-width: 150px;">
+                </div>
+
+                <div class="card shadow-lg p-4">
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-2">Calculadora de Envíos 🇨🇳</h1>
+                        <h2 class="card-subtitle text-center mb-4">YPS</h2>
+
+                        <div class="mb-3">
+                            <label for="shipping-type" class="form-label">Tipo de envío:</label>
+                            <select id="shipping-type" class="form-select">
+                                <option value="" selected disabled>Seleccione tipo de envío</option>
+                                <option value="aereo">Aéreo ✈️</option>
+                                <option value="maritimo">Marítimo 🚢</option>
+                            </select>
+                        </div>
+
+                        <div id="info-box" class="alert alert-info d-none"></div>
+
+                        <div id="category-group" class="mb-3 d-none">
+                            <label for="category" id="category-label" class="form-label">Precio KG:</label>
+                            <select id="category" class="form-select"></select>
+                        </div>
+                        
+                        <div id="sensitive-contact-prompt" class="alert alert-primary d-none"></div>
+                        <div id="sensitive-warning" class="alert alert-danger d-none"></div>
+
+                        <div id="form-fields" class="d-none">
+                            <div class="row">
+                                <div class="col-12 col-sm-4 mb-3">
+                                    <label for="length" class="form-label">Largo (cm):</label>
+                                    <input type="number" id="length" class="form-control" placeholder="A">
+                                </div>
+                                <div class="col-12 col-sm-4 mb-3">
+                                    <label for="width" class="form-label">Ancho (cm):</label>
+                                    <input type="number" id="width" class="form-control" placeholder="B">
+                                </div>
+                                <div class="col-12 col-sm-4 mb-3">
+                                    <label for="height" class="form-label">Alto (cm):</label>
+                                    <input type="number" id="height" class="form-control" placeholder="C">
+                                </div>
+                            </div>
+                            <div id="weight-group" class="mb-3">
+                                <label for="weight" class="form-label">Peso (kg):</label>
+                                <input type="number" id="weight" class="form-control" placeholder="Ingrese peso en kg">
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button id="calculate-btn" class="btn btn-primary btn-lg d-none">Calcular 🚀</button>
+                            <button id="contact-btn" class="btn btn-danger btn-lg d-none">Contacta a un asesor 💬</button>
+                        </div>
+
+                        <div id="results" class="mt-4 pt-4 border-top d-none">
+                             <div class="mb-3">
+                                <label id="cbm-label" class="form-label">CBM M3 total:</label>
+                                <input type="text" id="cbm-result" class="form-control text-center" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Precio del envío:</label>
+                                <input type="text" id="price-result" class="form-control text-center fs-4" readonly>
+                                <small id="price-note" class="form-text text-center d-block mt-1"></small>
+                            </div>
+                            <div class="sub-calculations text-end">
+                                <p id="weight-calc-display" class="mb-0"></p>
+                                <p id="volume-calc-display" class="mb-0"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div class="calculator-container">
-        <h1>Calculadora de Envío</h1>
-        <h2 class="company-name">TUEMPRESA</h2>
-
-        <div class="form-group">
-            <label for="shipping-type">Tipo de envío:</label>
-            <select id="shipping-type">
-                <option value="" selected disabled>Seleccione tipo de envío</option>
-                <option value="aereo">Aéreo ✈️</option>
-                <option value="maritimo">Marítimo 🚢</option>
-            </select>
-        </div>
-
-        <div id="info-box" class="info-box" style="display: none;"></div>
-
-        <div class="form-group" id="category-group" style="display: none;">
-            <label for="category" id="category-label">Precio KG:</label>
-            <select id="category"></select>
-        </div>
-
-        <div id="form-fields" style="display: none;">
-            <div class="form-group">
-                <label for="length">Largo (cm):</label>
-                <input type="number" id="length" placeholder="Ingrese valor A">
-            </div>
-            <div class="form-group">
-                <label for="width">Ancho (cm):</label>
-                <input type="number" id="width" placeholder="Ingrese valor B">
-            </div>
-            <div class="form-group">
-                <label for="height">Alto (cm):</label>
-                <input type="number" id="height" placeholder="Ingrese valor C">
-            </div>
-            <div class="form-group" id="weight-group">
-                <label for="weight">Peso (kg):</label>
-                <input type="number" id="weight" placeholder="Ingrese peso en kg">
-            </div>
-        </div>
-
-        <div id="sensitive-warning" class="warning-box" style="display: none;">
-            <h3>⚠️ CARGA SENSIBLE ⚠️</h3>
-            <p>Incluye mercancías como:</p>
-            <ul>
-                <li>Agentes acuosos</li>
-                <li>Baterías de litio</li>
-                <li>Imitaciones de marcas (réplicas)</li>
-                <li>Polvos, Alimentos, Cosméticos</li>
-                <li>Mercancía de alto valor</li>
-                <li>Marcas chinas</li>
-            </ul>
-        </div>
-        
-        <button id="calculate-btn" style="display: none;">Calcular 🚀</button>
-        <button id="contact-btn" class="contact-btn" style="display: none;">Contacta a un asesor 💬</button>
-
-        <div id="results" style="display: none;">
-            <div class="form-group">
-                <label id="cbm-label">CBM M3 total:</label>
-                <input type="text" id="cbm-result" readonly>
-                <small class="formula">Fórmula: (A × B × C) ÷ 1,000,000 = CBM</small>
-            </div>
-            <div class="form-group">
-                <label>Precio del envío:</label>
-                <input type="text" id="price-result" readonly>
-                <small id="price-note" class="formula">COSTO DE ENVÍO APROXIMADO</small>
-            </div>
-             <div class="sub-calculations">
-                <p id="weight-calc-display"></p>
-                <p id="volume-calc-display"></p>
-            </div>
-        </div>
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,16 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- CONFIGURACIÓN PRINCIPAL ---
-    // Modifica estos valores para tu empresa
     const config = {
         aereo: {
             info: "Una vez sale el vuelo de China su compra se entrega de <strong>20 a 30 días</strong>.",
             minShipping: "Envío mínimo 1kg",
-            volumetricDivisor: 6000, // Divisor estándar IATA para kg (cm³/kg)
+            volumetricDivisor: 6000,
             categories: [
                 { name: "CARGA GENERAL - $45 📦", value: "general", price: 45 },
                 { name: "CARGA SENSIBLE - $65 ⚠️", value: "sensible", price: 65 },
-                { name: "CELULARES / TABLETS / LAPTOP 📱", value: "electronica", price: null } // Null price means contact advisor
+                { name: "CELULARES / TABLETS / LAPTOP 📱", value: "electronica", price: null }
             ]
         },
         maritimo: {
@@ -21,55 +19,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "CARGA GENERAL - $920 📦", value: "general", price: 920 },
                 { name: "CARGA SENSIBLE - $980 ⚠️", value: "sensible", price: 980 }
             ]
-        }
+        },
+        contactLink: "https://wa.link/4fmnor"
     };
 
-    // --- SELECCIÓN DE ELEMENTOS DEL DOM ---
+    // --- Selección de Elementos del DOM ---
     const shippingTypeSelect = document.getElementById('shipping-type');
     const categoryGroup = document.getElementById('category-group');
     const categorySelect = document.getElementById('category');
     const categoryLabel = document.getElementById('category-label');
     const infoBox = document.getElementById('info-box');
     const formFields = document.getElementById('form-fields');
-    const weightGroup = document.getElementById('weight-group');
     const sensitiveWarning = document.getElementById('sensitive-warning');
+    const sensitiveContactPrompt = document.getElementById('sensitive-contact-prompt');
     const calculateBtn = document.getElementById('calculate-btn');
     const contactBtn = document.getElementById('contact-btn');
     const resultsDiv = document.getElementById('results');
-    
-    // Inputs
+    const weightGroup = document.getElementById('weight-group');
     const lengthInput = document.getElementById('length');
     const widthInput = document.getElementById('width');
     const heightInput = document.getElementById('height');
     const weightInput = document.getElementById('weight');
-
-    // Outputs
     const cbmResult = document.getElementById('cbm-result');
     const priceResult = document.getElementById('price-result');
     const priceNote = document.getElementById('price-note');
     const weightCalcDisplay = document.getElementById('weight-calc-display');
     const volumeCalcDisplay = document.getElementById('volume-calc-display');
 
-
-    // --- EVENT LISTENERS ---
+    // --- Event Listeners ---
     shippingTypeSelect.addEventListener('change', setupForm);
     categorySelect.addEventListener('change', handleCategoryChange);
     calculateBtn.addEventListener('click', calculateShipping);
+    contactBtn.addEventListener('click', () => {
+        window.location.href = config.contactLink;
+    });
 
-
-    // --- FUNCIONES ---
+    // --- Funciones ---
     function setupForm() {
         const type = shippingTypeSelect.value;
         if (!type) return;
 
         const settings = config[type];
         
-        // Actualizar caja de información
         infoBox.innerHTML = `${settings.info}<br><span class="min-shipping">${settings.minShipping}</span>`;
-        infoBox.style.display = 'block';
+        infoBox.classList.remove('d-none'); // Muestra el elemento
 
-        // Llenar categorías
-        categorySelect.innerHTML = ''; // Limpiar opciones anteriores
+        categorySelect.innerHTML = '';
         const initialOption = document.createElement('option');
         initialOption.textContent = 'Seleccione categoría';
         initialOption.disabled = true;
@@ -83,39 +78,38 @@ document.addEventListener('DOMContentLoaded', () => {
             categorySelect.appendChild(option);
         });
         
-        // Configurar UI para Aéreo o Marítimo
         if (type === 'aereo') {
             categoryLabel.textContent = 'Precio KG:';
-            weightGroup.style.display = 'block';
-        } else { // Marítimo
+        } else {
             categoryLabel.textContent = 'Precio CBM:';
-            weightGroup.style.display = 'none';
         }
         
-        // Resetear y mostrar campos
         resetFieldsAndResults();
-        categoryGroup.style.display = 'block';
-        formFields.style.display = 'block';
-        calculateBtn.style.display = 'none';
-        contactBtn.style.display = 'none';
+        categoryGroup.classList.remove('d-none'); // Muestra el grupo de categorías
     }
 
     function handleCategoryChange() {
-        const type = shippingTypeSelect.value;
         const categoryValue = categorySelect.value;
         if (!categoryValue || categoryValue === 'Seleccione categoría') return;
 
-        const category = config[type].categories.find(c => c.value === categoryValue);
+        // Oculta todos los mensajes opcionales para empezar de cero
+        sensitiveWarning.classList.add('d-none');
+        sensitiveContactPrompt.classList.add('d-none');
 
-        sensitiveWarning.style.display = categoryValue === 'sensible' ? 'block' : 'none';
+        if (categoryValue === 'sensible') {
+            sensitiveWarning.classList.remove('d-none');
+        }
 
-        if (category.value === 'electronica') {
-            calculateBtn.style.display = 'none';
-            contactBtn.style.display = 'block';
-            resultsDiv.style.display = 'none';
+        if (categoryValue === 'electronica') {
+            sensitiveContactPrompt.classList.remove('d-none');
+            formFields.classList.add('d-none');
+            resultsDiv.classList.add('d-none');
+            calculateBtn.classList.add('d-none');
+            contactBtn.classList.remove('d-none');
         } else {
-            calculateBtn.style.display = 'block';
-            contactBtn.style.display = 'none';
+            formFields.classList.remove('d-none');
+            calculateBtn.classList.remove('d-none');
+            contactBtn.classList.add('d-none');
         }
     }
 
@@ -163,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         priceResult.value = `$${price.toFixed(2)}`;
-        resultsDiv.style.display = 'block';
+        resultsDiv.classList.remove('d-none'); // Muestra la sección de resultados
     }
     
     function resetFieldsAndResults() {
@@ -171,7 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
         widthInput.value = '';
         heightInput.value = '';
         weightInput.value = '';
-        resultsDiv.style.display = 'none';
-        sensitiveWarning.style.display = 'none';
+        formFields.classList.add('d-none');
+        resultsDiv.classList.add('d-none');
+        sensitiveWarning.classList.add('d-none');
+        sensitiveContactPrompt.classList.add('d-none');
+        calculateBtn.classList.add('d-none');
+        contactBtn.classList.add('d-none');
     }
 });

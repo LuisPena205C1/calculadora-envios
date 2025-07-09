@@ -1,172 +1,128 @@
+:root {
+    /* Paleta de colores basada en tu logo YPS */
+    --yps-dark-blue: #0d1b2a;
+    --yps-mid-blue: #1b263b;
+    --yps-gold: #d4af37;
+    --yps-gold-rgb: 212, 175, 55;
+    --yps-light-text: #f1f1f1;
+    --yps-danger: #e63946;
+    --yps-danger-light: #ff8a93;  /* Texto más claro para alerta de peligro */
+    --yps-info: #457b9d;
+    --yps-info-light: #88c0d0;    /* Texto más claro para alerta de info */
+    --yps-gold-light: #f7e3a2;     /* Texto más claro para alerta primaria */
+    --yps-border-color: rgba(212, 175, 55, 0.25);
+}
+
+/* Estilos base del body */
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #0a192f; /* Azul oscuro de fondo */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 100vh;
-    padding: 30px;
-    box-sizing: border-box;
-    margin: 0;
+    background-color: var(--yps-dark-blue);
+    color: var(--yps-light-text);
 }
 
-.logo-container {
-    margin-bottom: 30px;
-    text-align: center;
+/* Contenedor principal de la calculadora */
+.card {
+    background-color: var(--yps-mid-blue);
+    border: 1px solid var(--yps-border-color);
+    border-radius: 0.75rem;
 }
 
-.logo-container img {
-    max-width: 200px; /* Ajusta el tamaño del logo según necesites */
-    height: auto;
-}
-
-.calculator-container {
-    background-color: #172a45; /* Fondo del contenedor más claro */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 450px;
-}
-
-h1 {
-    text-align: center;
-    color: #f9f871; /* Dorado para el título */
-    margin-top: 0;
-}
-
-.company-name {
-    color: #f4a261; /* Naranja para el nombre de la empresa */
-    text-align: center;
-    margin-top: -15px;
-    margin-bottom: 30px;
+/* Títulos y subtítulos */
+.card-title {
+    color: var(--yps-gold);
     font-weight: 700;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
+.card-subtitle {
+    color: var(--yps-light-text);
     font-weight: 600;
-    color: #FFFFFF; /* Texto blanco/gris claro */
+    /* Se eliminó la opacidad para máxima legibilidad */
 }
 
-input, select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #495670; /* Borde de los inputs */
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    background-color: #0a192f; /* Fondo de los inputs */
-    color: #ccd6f6;
+/* Estilo para las etiquetas de los formularios */
+.form-label {
+    color: #ffffff;
+    font-weight: 600;
 }
 
-input::placeholder {
-    color: #8892b0;
+/* Estilos para todos los campos de formulario */
+.form-control, .form-select {
+    background-color: var(--yps-dark-blue);
+    border-color: var(--yps-border-color);
+    color: var(--yps-light-text);
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: #f9f871; /* Dorado al enfocar */
+.form-control:focus, .form-select:focus {
+    background-color: var(--yps-dark-blue);
+    color: var(--yps-light-text);
+    border-color: var(--yps-gold);
+    box-shadow: 0 0 0 0.25rem rgba(var(--yps-gold-rgb), 0.25);
 }
 
-select {
-    cursor: pointer;
+.form-control::placeholder {
+    color: #a8b2d1; /* Un poco más claro */
 }
 
-.info-box {
-    background-color: rgba(244, 162, 97, 0.1);
-    border: 1px solid rgba(244, 162, 97, 0.5);
-    color: #f4a261;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
+/* Botón Principal (Calcular) */
+.btn-primary {
+    background-color: var(--yps-gold);
+    border-color: var(--yps-gold);
+    color: var(--yps-dark-blue);
+    font-weight: 700;
 }
 
-.info-box .min-shipping {
-    font-weight: bold;
+.btn-primary:hover {
+    background-color: #c09b2e;
+    border-color: #c09b2e;
+    color: var(--yps-dark-blue);
 }
 
-.warning-box {
+/* Botón Secundario (Contacto) */
+.btn-danger {
+    background-color: var(--yps-danger);
+    border-color: var(--yps-danger);
+    font-weight: 700;
+}
+
+/* Estilos para las alertas de Bootstrap */
+.alert {
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+/* Info Box (Aéreo/Marítimo) */
+.alert-info {
+    background-color: rgba(69, 123, 157, 0.15);
+    color: var(--yps-info-light); /* Color de texto más claro */
+    border-color: rgba(69, 123, 157, 0.3);
+}
+
+/* Mensaje de contacto para electrónicos */
+.alert-primary {
+    background-color: rgba(var(--yps-gold-rgb), 0.1);
+    color: var(--yps-gold-light); /* Color de texto más claro */
+    border-color: rgba(var(--yps-gold-rgb), 0.3);
+}
+
+/* Advertencia de Carga Sensible */
+.alert-danger {
     background-color: rgba(230, 57, 70, 0.1);
-    border: 1px solid rgba(230, 57, 70, 0.5);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    color: #ff8a93;
+    color: var(--yps-danger-light); /* Color de texto más claro */
+    border-color: rgba(230, 57, 70, 0.3);
 }
 
-.warning-box h3 {
-    margin: 0 0 10px 0;
-    font-size: 1rem;
-    color: #e63946;
+/* Sección de Resultados */
+#results .border-top {
+    border-color: var(--yps-border-color) !important;
 }
 
-.warning-box ul {
-    margin: 0;
-    padding-left: 20px;
-    font-size: 0.9rem;
-}
-
-button {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: #f4a261; /* Naranja */
-    color: #0a192f; /* Texto azul oscuro */
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #e76f51; /* Naranja más oscuro al pasar el mouse */
-}
-
-.contact-btn {
-     background-color: #e63946; /* Rojo para el botón de contacto */
-     color: white;
-}
-
-.contact-btn:hover {
-     background-color: #d62828; /* Rojo más oscuro al pasar el mouse */
-}
-
-#results {
-    margin-top: 25px;
-    border-top: 1px solid #495670; /* Borde superior de los resultados */
-    padding-top: 20px;
-}
-
-#results input {
-    background-color: #0a192f; /* Fondo del input de resultados */
+#price-result {
     font-weight: bold;
-    color: #f9f871; /* Texto dorado en resultados */
-    font-size: 1.2rem;
-    text-align: center;
+    color: var(--yps-gold);
+    background-color: var(--yps-dark-blue) !important;
 }
 
-.formula {
-    display: block;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #a8b2d1; /* Texto gris azulado claro */
-    margin-top: 5px;
-}
-
-.sub-calculations {
-    text-align: right;
-    font-size: 0.9rem;
-    color: #ccd6f6;
-    margin-top: 10px;
+/* Textos de desglose y fórmulas */
+.sub-calculations, .form-text {
+    color: #ffffff; /* Blanco puro para máxima legibilidad */
 }
