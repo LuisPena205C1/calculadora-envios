@@ -6,10 +6,10 @@
     --yps-gold-rgb: 212, 175, 55;
     --yps-light-text: #f1f1f1;
     --yps-danger: #e63946;
-    --yps-danger-light: #ff8a93;  /* Texto más claro para alerta de peligro */
+    --yps-danger-light: #ff8a93;
     --yps-info: #457b9d;
-    --yps-info-light: #88c0d0;    /* Texto más claro para alerta de info */
-    --yps-gold-light: #f7e3a2;     /* Texto más claro para alerta primaria */
+    --yps-info-light: #88c0d0;
+    --yps-gold-light: #f7e3a2;
     --yps-border-color: rgba(212, 175, 55, 0.25);
 }
 
@@ -18,6 +18,11 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--yps-dark-blue);
     color: var(--yps-light-text);
+}
+
+.logo-container img {
+    max-width: 180px;
+    height: auto;
 }
 
 /* Contenedor principal de la calculadora */
@@ -36,7 +41,6 @@ body {
 .card-subtitle {
     color: var(--yps-light-text);
     font-weight: 600;
-    /* Se eliminó la opacidad para máxima legibilidad */
 }
 
 /* Estilo para las etiquetas de los formularios */
@@ -60,7 +64,7 @@ body {
 }
 
 .form-control::placeholder {
-    color: #a8b2d1; /* Un poco más claro */
+    color: #a8b2d1;
 }
 
 /* Botón Principal (Calcular) */
@@ -93,21 +97,21 @@ body {
 /* Info Box (Aéreo/Marítimo) */
 .alert-info {
     background-color: rgba(69, 123, 157, 0.15);
-    color: var(--yps-info-light); /* Color de texto más claro */
+    color: var(--yps-info-light);
     border-color: rgba(69, 123, 157, 0.3);
 }
 
 /* Mensaje de contacto para electrónicos */
 .alert-primary {
     background-color: rgba(var(--yps-gold-rgb), 0.1);
-    color: var(--yps-gold-light); /* Color de texto más claro */
+    color: var(--yps-gold-light);
     border-color: rgba(var(--yps-gold-rgb), 0.3);
 }
 
 /* Advertencia de Carga Sensible */
 .alert-danger {
     background-color: rgba(230, 57, 70, 0.1);
-    color: var(--yps-danger-light); /* Color de texto más claro */
+    color: var(--yps-danger-light);
     border-color: rgba(230, 57, 70, 0.3);
 }
 
@@ -124,5 +128,12 @@ body {
 
 /* Textos de desglose y fórmulas */
 .sub-calculations, .form-text {
-    color: #ffffff; /* Blanco puro para máxima legibilidad */
+    color: #ffffff;
+}
+
+/* Estilo para el icono de la bandera en el título */
+.flag-icon {
+    width: 24px; /* Ancho reducido de la bandera */
+    vertical-align: middle; /* Alinea la bandera con el texto */
+    margin-left: 8px; /* Espacio entre el texto y la bandera */
 }
